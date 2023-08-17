@@ -1,0 +1,13 @@
+Turn = 0;
+MyHP = 9999;
+MyMaxHP = 9999;
+Defense = 0;
+MyName = "Gaster Follower";
+ShowHealthBar = true;
+CanSpare = false;
+ReadyForBattle = false;
+Dialogue = noone;
+Myself = -1;
+Act[0] = "Check";
+CheckDescription[0] = "* Gaster Follower - ? ATK ? DEF&* Appears to be serving by an&  unknown force.";
+CheckDescription[1] = "* Their presence here holds&  your enemy as prisoner.";

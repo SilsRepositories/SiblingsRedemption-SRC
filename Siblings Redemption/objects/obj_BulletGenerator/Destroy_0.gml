@@ -1,0 +1,20 @@
+instance_destroy(obj_BulletGenerator);
+instance_destroy(obj_Bullet);
+instance_destroy(obj_Gaster_Bullet);
+instance_destroy(obj_GasterBlaster);
+instance_destroy(obj_GasterBlasterBeam);
+instance_destroy(obj_CharaSlash);
+instance_destroy(obj_Platform);
+instance_destroy(obj_Shrike_Small);
+instance_destroy(obj_Shrike_Big);
+instance_destroy(obj_Phase3_RevealTeaser);
+if obj_BattleEffects.Rotation != 0
+	audio_play_sound(asset_get_index("mus_dialup_" + string(choose(0,1,2,3,4))), 0, false);
+obj_BattleEffects.Rotation = 0;
+obj_Soul.visible = false;
+global.BattleMenu = -1;
+global.UISelectionMenu = obj_ButtonController.BelowUIReferenceNum;
+global.BorderWidth = 570;
+global.BorderHeight = 120;
+obj_BulletBoard.current_offsetx = 0;
+obj_BulletBoard.current_offsety = 0;

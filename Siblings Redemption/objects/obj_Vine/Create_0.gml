@@ -1,0 +1,9 @@
+dmg = 4;
+disocon = false;
+siner = 0;
+Inside = true;
+behav = 0;
+ang = 0;
+targs = 1;
+image_xscale = 0;
+audio_play_sound(snd_wallclaw, 0, false);

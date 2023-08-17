@@ -1,0 +1,10 @@
+Siner = 0;
+alarm[0] = 300;
+ShakeEffect = 0;
+con = 0;
+obj_BattleEffects.CMAB = 0;
+var layer_fx = layer_get_fx("Effect_1");
+fx_set_parameter(layer_fx, "g_RGBNoiseIntensity", 0);
+RedSin = 0;
+White = 8;
+CredAlpha = 0;

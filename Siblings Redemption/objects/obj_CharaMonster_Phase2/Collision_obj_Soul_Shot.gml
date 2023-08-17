@@ -1,0 +1,20 @@
+var shards = 1;
+if !other.big {
+	ShakeEffect = 2;
+}
+else {
+	ShakeEffect = 2;
+	shards = 9;
+}
+Hits -= shards;
+if Hits < 0 && Turn < 10
+	Hits = 0;
+audio_play_sound(MonsterHurt, 0, false);
+instance_destroy(other);
+repeat shards {
+	shard = instance_create_depth(x + random_range(-20, 20), y - random(30), -100, obj_GameOver_SoulBit);
+	shard.hspeed = random_range(-3, 3);
+	shard.vspeed = random_range(-3, 1);
+	shard.gravity = -0.1;
+	shard.sprite_index = Soul_Bit_White;
+}
