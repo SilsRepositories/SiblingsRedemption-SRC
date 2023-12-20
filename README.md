@@ -31,3 +31,4 @@ By extension, I will tell you what you can and cannot do with this code.
 - Merg for playing this game, even if I'm not that happy with the game now.
 - Toby Fox for making Undertale and bringing us all together.
 - All of my playtesters and helpers. They have helped to shape the game to what it is today.
+- And you, for playing. =)
