@@ -1,10 +1,15 @@
 var _y = camera_get_view_y(view_camera[0]);
 var _menuPos = 480;
+// Gives a "fadeout" feel as the phases get darker the more you play
 draw_set_alpha(_y < 480 ? (PhaseOffset / 4480) : 0);
 draw_set_color(c_black);
 draw_rectangle(-10, -10, 650, 480, false);
 draw_set_alpha(1);
+
+// Changes the volume to give off an eerie vibe that the game aims to achieve
 audio_sound_gain(sr_phase4_preview, (PhaseOffset / 4480), 0);
+
+// Plays a garbled voice over the hardest phases
 if global.Choice == 3 && global.Menu == 1 {
 	if !audio_is_playing(REBMA) {
 		audio_play_sound(REBMA, 0, true);
@@ -22,42 +27,57 @@ else {
 	audio_stop_sound(REBMA);
 }
 
+// Hides the book and old assets by default unless 
 if instance_exists(obj_Book)
 	obj_Book.visible = false;
 if instance_exists(obj_SR_Old)
 	obj_SR_Old.visible = false;
 
+// Version number
 draw_set_color(c_dkgray);
-draw_text(20, 930, "V1.2.0");
+draw_text(20, 930, "V1.2.1");
+
+// Makes the glitched colours very violent to add to the "impact" feel that the menu hopes to achieve
 if siner == 0
 	obj_BattleEffects.CMAB = 20;
 siner += 0.02;
+
+// Draws the silhouetted Chara
 draw_sprite_ext(silCharaBody, 0, 520, 680 - (sin(siner)), 1, 1, 0, c_white, 1);
 draw_sprite_ext(silCharaArmLeft, 0, 550, 682 - (sin(siner)), 1, 1, (sin(siner) * 5), c_white, 1);
 draw_sprite_ext(silCharaArmRight, 0, 488, 674 - (sin(siner)), 1, 1, -(sin(siner) * 5), c_white, 1);
 
+// Which menu are we on?
 switch global.Menu {
 	case 0:
+		// Sets the menu volume back to normal since that changes in the phase selection menu
 		audio_sound_gain(sr_menu, 1, 0);
 		MenuLength = 5;
 		break;
 	case 1:
+		// By default, the maximum phase that can be selected is phase 7, but if the player hasn't beat phase 4 yet that it doesn't allow access to phases 5-7
 		MenuLength = 7;
 		if Unlock < 5 {
 			MenuLength = 4;
 		}
 		_menuPos = 0;
+		
+		// Picture display
 		if PhaseOffset != (640 * global.Choice) {
 			PhaseOffset += ((640 * global.Choice) - PhaseOffset) / 12;
 		}
 		audio_sound_gain(sr_menu, 0.5 - (PhaseOffset / 4480), 0);
 		obj_BattleEffects.CMAB = global.Choice;
+		
+		// Changes the glitch effect to be less violent on the hardest phases
 		if global.Choice == 3 {
 			obj_BattleEffects.CMAB = 0.5;
 		}
 		if global.Choice == 6 {
 			obj_BattleEffects.CMAB = 0;
 		}
+		
+		// Displays the phases based on which one is selected and whether or not it has been unlocked
 		for (var i = 1; i < 8; i++) {
 			if Unlock >= i
 				draw_sprite_ext(sp1, i - 1, ((640 * i) - PhaseOffset) - 320, 260, 0.8, 0.8, 0, (i <= Unlock ? c_white : c_black), (((i >= Unlock) * 0.5) + (global.Choice == (i - 1)) - abs(((640 * (i - 1)) - PhaseOffset) / 720)));
@@ -65,6 +85,8 @@ switch global.Menu {
 			fa = draw_get_halign();
 			draw_set_halign(fa_center);
 			draw_set_color(c_white);
+			// The star that displays for when you do a challenge run on a phase
+			// Silver is No Heal, Gold is No Hit
 			if noheal[i - 1] && !nohit[i - 1] {
 				draw_sprite_ext(star_0, 1, ((640 * i) - PhaseOffset) - 320, 40, 0.5, 0.5, 0, (i <= Unlock ? c_white : c_black), (((i >= Unlock) * 0.5) + (global.Choice == (i - 1)) - abs(((640 * (i - 1)) - PhaseOffset) / 720)));
 				draw_text(((640 * i) - PhaseOffset) - 320, 70, "NO HEAL");
@@ -82,9 +104,13 @@ switch global.Menu {
 		draw_set_color(c_white);
 		draw_set_font(font_phasemenu);
 		fa = draw_get_halign();
+		
+		// Phase N in the middle
 		draw_set_halign(fa_center);
 		var text = "phase " + string(round((PhaseOffset / 640) + 1));
 		draw_text_transformed(320, 410, text, 1, 1, 0);
+		
+		// Phase subtitle, I tried to be creative with them
 		switch (text) {
 			case "phase 1":	
 				draw_text_transformed(320, 450, (Unlock >= 1 ? "confrontation" : "locked"), 0.5, 0.5, 0);
@@ -120,6 +146,7 @@ switch global.Menu {
 		draw_text(20, 450, "< PREV");
 		break;
 	case 2:
+		// Options menu
 		MenuLength = 4;
 		_menuPos = 960;
 		draw_set_font(font_battle_dialogue);
@@ -145,6 +172,7 @@ switch global.Menu {
 			case 3:
 				SpeedrunCategory = "Phases 5-7";
 				SpeedrunText =  "Complete Afterlife phases as fast as possible.\nGood luck to you!";
+				// Prevents players from advancing to phases 5-7 if they haven't yet beaten phase 4
 				if Unlock < 5
 					global.SpeedrunMode = 4;
 				break;
@@ -174,11 +202,13 @@ switch global.Menu {
 		break;
 	case 4:
 		_menuPos = 0;
+		// Displays the book
 		if instance_exists(obj_Book)
 			obj_Book.visible = true;
 		break;
 	case 5:
 		_menuPos = 0;
+		// Displays the old assets
 		if instance_exists(obj_SR_Old)
 			obj_SR_Old.visible = true;
 		break;
@@ -194,7 +224,10 @@ if global.Choice != -1 {
 			audio_play_sound(Select, 0, false);
 			obj_BattleEffects.CMAB = 10;
 		}
+		
+		// Default HP, has to be defined or an HP of 0 or 100 will be displayed instead when doing a speedrun
 		global.PlayerHP = 99;
+		
 		switch global.Menu {
 			case 0:
 				if (global.Choice == 0) {
@@ -238,6 +271,7 @@ if global.Choice != -1 {
 				global.Choice = 0;
 				break;
 			case 1:
+				// If this is set to anything other than 0 then the game will not display the right HP per phase
 				global.PlayerHP = 0;
 				if global.Choice <= (Unlock - 1) {
 					with (obj_SpeedrunTimer) {
@@ -261,6 +295,7 @@ if global.Choice != -1 {
 					else {
 						audio_stop_all();
 						room_goto(Room_Finale);
+						global.EnemyGroup = 7;
 					}
 				}
 				else {
@@ -281,6 +316,7 @@ if global.Choice != -1 {
 					ini_write_real("settings", "nohitmode", global.nohitmode);
 					ini_close();
 				}
+				// Deletes the save file
 				if global.Choice == 2 {
 					sure += 1;
 					audio_play_sound(Gigatalk, 0, false);
@@ -297,6 +333,7 @@ if global.Choice != -1 {
 						global.SpeedrunMode = 0;
 					}
 				}
+				// Gold Soul, only playable if the player has done a no-hit on phases 1-4 (doesn't have to be in one run)
 				if global.Choice == 4
 					global.GoldSoul = !global.GoldSoul;
 				break;
@@ -357,6 +394,7 @@ sprite_index = SRLogo;
 x = lerp(x, 120, 0.05);
 y = lerp(y, 518, 0.05);
 
+// Changes the pitch of the music and the saturation factor down on the menu if the player is on phase 5, 6 or 7
 if Unlock > 4 && Unlock < 8 {
 	ai = 1;
 	audio_sound_pitch(sr_menu, 0.25);
@@ -364,6 +402,8 @@ if Unlock > 4 && Unlock < 8 {
 	fx_set_parameter(fx, "g_Intensity", 1 - (abs(480 - camera_get_view_y(view_camera[0])) / 400));
 	layer_set_fx("Greyscaler", fx);
 }
+
+// Logo
 for (var i = 0; i < sprite_height; i++) {
 	var glitchRNG = irandom_range(1, 300);
 	var offset = 0.2;
@@ -373,6 +413,8 @@ for (var i = 0; i < sprite_height; i++) {
 	var cr = make_color_rgb(255 - (127 * alpha), 255 - (127 * alpha), 255 - (127 * alpha));
 	draw_sprite_part_ext(sprite_index, ai, 0, i, sprite_width, 1, x - sprite_xoffset + random_range(-offset, offset), y - sprite_yoffset + (i * 2), 2, 2, cr, 1);
 }
+
+// Patch notes
 if pa > 0 {
 	draw_sprite_ext(_12_1, (pa - 1), 320, 720, 1, 1, 0, c_white, 1);
 	if keyboard_check_pressed(vk_enter) || keyboard_check_pressed(ord("Z"))

@@ -117,23 +117,32 @@ if (tim >= 4656 && tim < 5077) {
 	draw_set_color(c_white);
 	draw_text(427, 260, "Toby Fox and Temmie Chang");
 }
-if (tim > 5292 && tim < 8100) {
+if (tim > 5292 && tim < 7100) {
 	obj_BattleEffects.CMAB = 0;
 	draw_sprite_ext(End, 0, 427, 240, 2, 2, 0, c_white, (tim - 5292) / 420);
 }
-if (tim > 5712 && tim < 8100) {
-	draw_set_alpha((tim - 5712) / 420);
+if (tim > 5712 && tim < 7100) {
+	draw_set_alpha((tim - 5712) / 200);
 	draw_set_halign(fa_center);
 	draw_set_font(font_battle_dialogue);
 	draw_set_color(c_yellow);
 	draw_text(427, 260, "Thanks for playing!");
 	draw_set_alpha(1);
 }
-if (tim > 7400 && tim < 8100) {
-	draw_set_alpha((tim - 7400) / 600);
+if (tim > 6400 && tim < 7100) {
+	draw_set_alpha((tim - 6400) / 600);
 	draw_set_color(c_black);
 	draw_rectangle(0, 0, 854, 480, false);
 	draw_set_alpha(1);
+}
+if (tim > 7100 && tim < 8100) {
+	draw_set_alpha((tim - 7100) / 200);
+	if tim < 7900 {
+		draw_sprite_ext(ElimaMemory, 0, 427, 240, 1, 1, 0, c_white, (tim - 7100) / 200);
+	}
+	else {
+		draw_sprite_ext(ElimaMemory, 0, 427, 240, 1, 1, 0, c_white, 1 - ((tim - 7900) / 200));	
+	}
 }
 
 // Skips Unified teaser if the player has accessed the credits via the menu

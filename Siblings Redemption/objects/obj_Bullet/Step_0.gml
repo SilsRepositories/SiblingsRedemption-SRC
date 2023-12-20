@@ -1,5 +1,6 @@
 siner += 1;
 switch behav {
+	// Knife that spins before aiming at soul
 	case 0:
 		if (siner == 1) {
 			audio_play_sound(snd_spearappear, 0, false);
@@ -22,6 +23,7 @@ switch behav {
 			instance_destroy();
 		}
 		break;
+	// Waving knife
 	case 2:
 		if (!spawn2) {
 			image_alpha = 0;
@@ -33,6 +35,7 @@ switch behav {
 		if SinMul > 70
 			SinMul = 70;
 		break;
+	// Spinning knife circle
 	case 3:
 		if (siner == 1) {
 			global.BorderWidth = 120;
@@ -47,6 +50,7 @@ switch behav {
 		x = 320 + lengthdir_x(sin(siner / 60) * 130, ang);
 		y = (384 - (global.BorderHeight / 2)) + lengthdir_y(sin(siner / 60) * 130, ang);
 		break;
+	// Knife that spins before aiming at soul, but it rebounds
 	case 4:
 		if (siner == 1) {
 			audio_play_sound(snd_spearappear, 0, false);
@@ -75,6 +79,7 @@ switch behav {
 			behav = -1;
 		}
 		break;
+	// Knife that quickly shoots
 	case 5:
 		image_alpha += 0.1;
 		if (siner == 1) {
@@ -91,6 +96,7 @@ switch behav {
 			image_angle = direction; //(direction - 90);
 		}
 		break;
+	// Knife that aims at soul before quickly shooting
 	case 6:
 		if (siner == 1) {
 			image_alpha = 0;
@@ -107,6 +113,7 @@ switch behav {
 			speed = 7;
 		}
 		break;
+	// Knives that glow red before shooting
 	case 7:
 		if (siner == 1 && global.EnemyGroup < 6)
 			audio_play_sound(snd_spearappear, 0, false);
@@ -126,9 +133,11 @@ switch behav {
 			speed += 1;
 		}
 		break;
+	// Knives that spin, only used in phase 6
 	case 8:
 		image_angle += hspeed;
 		break;
+	// Knives that home in on a central point
 	case 9:
 		if (siner == 1) {
 			image_alpha = 0;
@@ -148,6 +157,7 @@ switch behav {
 			}
 		}
 		break;
+	// Knives that slowly pull back before shooting
 	case 10:
 		if (speed =- 3) {
 			image_alpha = 0;
@@ -160,6 +170,7 @@ switch behav {
 			audio_play_sound(mus_sfx_a_pullback, 20, false);
 		break;
 }
+// If it goes too far out of bounds, destroy the object to prevent lag
 if (x < -200 || x > 840 || y < -200 || y > 680) {
 	instance_destroy();
 }

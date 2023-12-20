@@ -33,6 +33,7 @@ if (Hits <= 0) {
 		}
 		if global.FG_Hits == 0 {
 			SetChaText("NO HIT ALL AFTERLIFE PHASES");
+			UnlockAchievement(10);
 			UnlockAchievement(11);
 		}
 	}
@@ -44,6 +45,7 @@ if (Hits <= 0) {
 		}
 		if global.FG_Hits == 0 {
 			SetChaText("ARE YOU HUMAN?!");
+			UnlockAchievement(12);
 			UnlockAchievement(13);
 		}
 	}
@@ -51,7 +53,7 @@ if (Hits <= 0) {
 	DamageWriter = instance_create_depth(427, 50, -100, obj_MonsterHP);
 	DamageWriter.MyHP = 9999;
 	DamageWriter.MyCurrentHP = 9999;
-	DamageWriter.MyHPToBe = 9990;
+	DamageWriter.MyHPToBe = 9999;
 	DamageWriter.MyMaxHP = 9999;
 	DamageWriter.ShowBar = true;
 	DamageWriter.BarWidth = 600;

@@ -205,6 +205,8 @@ else {
 draw_set_color(c_red);
 if instance_exists(obj_CharaMonster_Phase3) || global.EnemyGroup > 2
 	draw_set_color(c_gray);
+	
+// Show the border based on encounter
 if Show {
 	draw_rectangle(border_l - 2, border_u - 4, border_r + 2, border_d + 4, false);
 	draw_rectangle(border_l - 3, border_u - 3, border_r + 3, border_d + 3, false);
@@ -213,10 +215,10 @@ if Show {
 	draw_rectangle(border_l, border_u, border_r, border_d, false);
 }
 
-//if devmode {
-//	global.Karma = global.PlayerMaxHP;
-//	global.PlayerHP = global.PlayerMaxHP;
-//}
+if devmode {
+	global.Karma = global.PlayerMaxHP;
+	global.PlayerHP = global.PlayerMaxHP;
+}
 
 if global.PlayerHP > global.PlayerMaxHP {
 	global.PlayerHP = global.PlayerMaxHP;
@@ -239,7 +241,6 @@ if global.EnemyGroup < 6 {
 	if !global.KARMA_ENABLED
 		draw_text(320 + hp_barwidth, BattleUI, string(global.PlayerHP) + " / " + string(global.PlayerMaxHP));
 	else {
-		//global.InvFrames = 0;
 		if global.Karma > global.PlayerHP {
 			BLT += 1;
 			if BLT >= 100 {
@@ -307,35 +308,35 @@ if global.EnemyGroup < 6 {
 	draw_set_alpha(1);
 }
 
-//if devmode {
-//	draw_set_font(font_battle_dialogue);
-//	draw_text(10, 10, "DEBUG");
-//	global.Turn = 404;
-//	global.CHP = 0;
-//	global.MonsterF[0, 0] = "Unknown";
-//	global.MonsterF[0, 1] = 0;
-//	with obj_BaseMonsterParams {
-//		if keyboard_check_pressed(ord("O")) {
-//			event_user(14);
-//		}
-//		if keyboard_check_pressed(ord("P")) {
-//			event_user(15);
-//		}
-//		if MyHP > 0 {
-//			global.MonsterF[global.CHP, 0] = MyName + " HP: ";
-//			global.MonsterF[global.CHP, 1] = string(MyHP) + "/" + string(MyMaxHP);
-//			global.CHP += 1;
-//		}
-//		global.Turn = Turn;
-//	}
-//	draw_text(10, 35, "Turn: " + string(global.Turn));
-//	draw_text(10, 60, "Hits: " + string(global.FG_Hits));
-//	draw_text(10, 85, "Starting phase: " + string(global.FG_Start));
-//	draw_text(10, 110, "Heals: " + string(global.FG_Heals));
-//	for (var i = 0; i < global.CHP; i++) {
-//		draw_text(10, 135 + (25 * i), global.MonsterF[i, 0] + global.MonsterF[i, 1]);
-//	}
-//}
+if devmode {
+	draw_set_font(font_battle_dialogue);
+	draw_text(10, 10, "DEBUG");
+	global.Turn = 404;
+	global.CHP = 0;
+	global.MonsterF[0, 0] = "Unknown";
+	global.MonsterF[0, 1] = 0;
+	with obj_BaseMonsterParams {
+		if keyboard_check_pressed(ord("O")) {
+			event_user(14);
+		}
+		if keyboard_check_pressed(ord("P")) {
+			event_user(15);
+		}
+		if MyHP > 0 {
+			global.MonsterF[global.CHP, 0] = MyName + " HP: ";
+			global.MonsterF[global.CHP, 1] = string(MyHP) + "/" + string(MyMaxHP);
+			global.CHP += 1;
+		}
+		global.Turn = Turn;
+	}
+	draw_text(10, 35, "Turn: " + string(global.Turn));
+	draw_text(10, 60, "Hits: " + string(global.FG_Hits));
+	draw_text(10, 85, "Starting phase: " + string(global.FG_Start));
+	draw_text(10, 110, "Heals: " + string(global.FG_Heals));
+	for (var i = 0; i < global.CHP; i++) {
+		draw_text(10, 135 + (25 * i), global.MonsterF[i, 0] + global.MonsterF[i, 1]);
+	}
+}
 
 // Drawing all attacks that are based on a surface
 // If they do NOT appear, try setting their "depth" to 1

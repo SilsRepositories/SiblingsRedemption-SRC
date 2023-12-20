@@ -42,6 +42,7 @@ global.Monster[1] = noone;
 global.Monster[2] = noone;
 global.coward = false;
 
+// These were used as placeholder achievements
 global.Achievement[0, 0] = "Deal With The Devil";
 global.Achievement[1, 0] = "The Jaws Of Defeat";
 global.Achievement[2, 0] = "To Bed Without Supper";

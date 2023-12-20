@@ -36,23 +36,6 @@ if !Mutate {
 	}
 }
 
-/*
-  Only use THIS when you want the enemy to DODGE attacks
-*/
-//else {
-//	x += 6;
-//	if (x >= 320) {
-//		x = 320;
-//		DodgeAnim = 0;
-//	}
-//}
-//if (DodgeAnim == 1) {
-//	x -= 6;
-//	if (x < 160) {
-//		x = 160;
-//	}
-//}
-
 var layer_fx = layer_get_fx("Effect_1");
 fx_set_parameter(layer_fx, "g_RGBNoiseIntensity", random(0.05));
 obj_BattleEffects.CMAB = 1 + (ShakeEffect / 2);

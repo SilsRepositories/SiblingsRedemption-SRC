@@ -71,6 +71,8 @@ function Names(name) {
 			return "WARNING:\nUsing this name may\nresult in unexpected\noutcomes. Proceed anyway?";
 		case "ben":
 			return "10";
+		case "elima":
+			return "A legend who was taken from\nus too early...";
 		default:
 			return "Is this name correct?";
 	}

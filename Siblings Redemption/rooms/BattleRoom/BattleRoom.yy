@@ -14,13 +14,6 @@
   ],
   "isDnd": false,
   "layers": [
-    {"resourceType":"GMREffectLayer","resourceVersion":"1.0","name":"Effect_3","depth":-200,"effectEnabled":true,"effectType":"_filter_distort","gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[
-        {"name":"g_DistortScale","type":0,"value":"0.2",},
-        {"name":"g_DistortAmount","type":0,"value":"19",},
-        {"name":"g_DistortOffset","type":0,"value":"0",},
-        {"name":"g_DistortOffset","type":0,"value":"0",},
-        {"name":"g_DistortTexture","type":2,"value":"_filter_distort_smoothnoise",},
-      ],"userdefinedDepth":false,"visible":false,},
     {"resourceType":"GMREffectLayer","resourceVersion":"1.0","name":"Effect_2","depth":-100,"effectEnabled":true,"effectType":"_filter_greyscale","gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[
         {"name":"g_Intensity","type":0,"value":"0",},
       ],"userdefinedDepth":false,"visible":true,},

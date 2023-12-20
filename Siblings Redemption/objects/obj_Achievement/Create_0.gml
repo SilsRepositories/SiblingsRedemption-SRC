@@ -1,4 +1,4 @@
-// Scrapped, would've shown achievement icons
+// Scrapped, would've shown achievement icons and a dropdown on getting an achievement
 // This was scrapped in favour of the achievement book
 
 con = 0;

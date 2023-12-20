@@ -1,3 +1,4 @@
+// OLD DIALOGUE:
 // Long ago, two races ruled over Earth, HUMANs and MONSTERs.
 // After the great war, the monsters were sealed underground.
 // Over the years, the monsters became frightened of humanity.
@@ -10,6 +11,7 @@
 // He and Chara would pull no punches in one last battle.
 // Together, both would get revenge on the human.
 // With their combined power, they will achieve REDEMPTION.
+
 Timer = 0;
 image_alpha = 0;
 FadingStage = 0;

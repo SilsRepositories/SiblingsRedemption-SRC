@@ -5,6 +5,7 @@ window_set_size(640, 480);
 surface_resize(application_surface, 640, 480);
 global.Choice = -1;
 global.P7Checkpoint = 0;
+global.FG_Hits = 0;
 b1 = instance_create_depth(180, 680, 0, obj_Menu_Button);
 b1.image_index = 0;
 b2 = instance_create_depth(180, 725, 0, obj_Menu_Button);
@@ -61,6 +62,8 @@ if !file_exists("file0") {
 }
 else {
 	ini_open("file0");
+	
+	// Sets the unlock threshold
 	for (var i = 1; i < 8; i++) {
 		Unlock += ini_read_real("phaseprogress", "phase" + string(i), 0);
 		noheal[i - 1] = ini_read_real("noheal", "noheal" + string(i), 0);
@@ -79,14 +82,19 @@ else {
 			k += 1;
 		}
 	}
+	
+	// There was a "perfectionist" achievement but I got rid of that in an earlier version
 	if (k == 8) {
 		UnlockAchievement(8);
 	}
+	
 	global.antiEpilepsy = ini_read_real("settings", "antiepilepsy", 0);
 	global.nohitmode = ini_read_real("settings", "nohitmode", 0);
+	
+	// Displays patch notes
 	vers = ini_read_string("settings", "version", "1.0.0");
-	if vers != "1.2.0" {
-		ini_write_string("settings", "version", "1.2.0");
+	if vers != "1.2.1" {
+		ini_write_string("settings", "version", "1.2.1");
 		showNotes = true;
 	}
 	ini_close();

@@ -19,7 +19,9 @@ global.NoHit = true;
 Show = true;
 BattleUI = 400;
 BattleUIAlpha = 1;
-//devmode = false;
+
+// Used for debugging, won't work in phase 7
+devmode = false;
 
 KarmaTimer = 0;
 

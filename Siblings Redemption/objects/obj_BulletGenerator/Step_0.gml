@@ -1,6 +1,8 @@
 if Turn == 50 {
 	obj_BulletBoard.Show = false;
 }
+
+// Don't start the attack until the bullet box is the right size
 if (global.BorderWidth != obj_BulletBoard.current_width || global.BorderHeight != obj_BulletBoard.current_height) && Turn >= 30 {
 	if !begi {
 		if alarm[1] > 0 {
@@ -1933,7 +1935,7 @@ switch Turn {
 					ang += 90;
 				}
 			}
-			if A2 % 70 == 0 && A2 < 8700 {
+			if A2 % 100 == 0 && A2 < 8700 {
 				var len = 70 + random(130);
 				var dir = random(360);
 				var _x2 = obj_Soul.x + lengthdir_x(len, dir);
@@ -1945,7 +1947,7 @@ switch Turn {
 				knife.image_angle = point_direction(_x2, _y2, obj_Soul.x, obj_Soul.y);
 				knife.Inside = false;
 			}
-			if A2 % 135 == 0 {
+			if A2 % 150 == 0 {
 				CreateGB(random(640), random(480), 0, 67, 1, 2, true);
 			}
 		}
@@ -2626,6 +2628,10 @@ switch Turn {
 			Dialogue.CanAdvance = false;
 		}
 		if Phase3Timer == 3199 || keyboard_check_pressed(ord("L")) {
+			if global.SpeedrunMode == 1
+				with (obj_SpeedrunTimer)
+					Running = false;
+					
 			audio_stop_sound(sr_phase3_intro);
 			global.EnemyGroup = 3;
 			room_restart();

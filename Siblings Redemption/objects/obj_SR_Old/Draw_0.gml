@@ -1,3 +1,4 @@
+// Text drawing
 draw_self();
 draw_set_font(font_speech_bubble);
 draw_set_color(c_white);
@@ -6,6 +7,7 @@ var va = draw_get_valign();
 draw_text(5, 440, "Hold 'H' for info");
 draw_text(5, 460, "Left and Right to navigate");
 
+// Draw the info based on which picture is showing
 if keyboard_check(ord("H")) {
 	draw_set_halign(fa_center);
 	draw_set_color(c_black);
@@ -42,6 +44,8 @@ if keyboard_check(ord("H")) {
 			break;
 	}
 }
+
+// Navigation controls
 if keyboard_check_pressed(vk_left)
 	image_index -= 1;
 if keyboard_check_pressed(vk_right)

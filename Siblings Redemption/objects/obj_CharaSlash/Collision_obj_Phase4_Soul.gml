@@ -1,5 +1,4 @@
 if image_alpha > 0.6 && global.soulInv <= 0 && Timer <= 0 {
-	//if collision_line(x - lengthdir_x(2000, Dir), y - lengthdir_y(2000, Dir), x + lengthdir_x(2000, Dir), y + lengthdir_y(2000, Dir), obj_Phase4_Soul, false, true) {
 	global.soulInv = 10;
 	global.NoHit = false;
 	global.FG_Hits += 1;
@@ -15,5 +14,4 @@ if image_alpha > 0.6 && global.soulInv <= 0 && Timer <= 0 {
 		global.soul7_HP = 0;
 		room_goto(Room_GameOver_Finale);
 	}
-	//}
 }

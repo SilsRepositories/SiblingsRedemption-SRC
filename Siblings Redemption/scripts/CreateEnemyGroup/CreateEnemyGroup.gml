@@ -14,12 +14,14 @@ function CreateEnemyGroup(group) {
 	fx_set_parameter(layer_fx, "g_RGBNoiseIntensity", 0);
 	
 	switch group {
+		// Phase 1
 		case 1:
 			global.Monster[0] = instance_create_depth(260, 240, 1, obj_FloweyMonster_Phase1);
 			global.Monster[1] = instance_create_depth(1000, 240, 1, obj_CharaMonster_Phase1);
 			bul = instance_create_depth(0, 0, -10000, obj_BulletGenerator);
 			bul.Turn = -65;
 			break;
+		// Phase 2 cutscene
 		case 1.5:
 			global.Monster[0] = instance_create_depth(260, 240, 1, obj_FloweyMonster_Phase1);
 			global.Monster[1] = instance_create_depth(380, 240, 1, obj_CharaMonster_Phase1);
@@ -27,10 +29,12 @@ function CreateEnemyGroup(group) {
 			bul.Turn = -66;
 			bul.Phase2Timer = 1049;
 			break;
+		// Phase 2
 		case 2:
 			global.Monster[0] = instance_create_depth(320, 240, 1, obj_CharaMonster_Phase2);
 			global.BattleMusic = audio_play_sound(sr_phase2_loop, 20, true);
 			break;
+		// Phase 3
 		case 3:
 			global.KARMA_ENABLED = false;
 			global.Monster[0] = instance_create_depth(320, 160, 1, obj_CharaMonster_Phase3);
@@ -38,18 +42,22 @@ function CreateEnemyGroup(group) {
 			global.Monster[2] = instance_create_depth(580, 335, 1, obj_GasterMonster_Phase3);
 			global.BattleMusic = audio_play_sound(sr_phase3_loop, 20, true);
 			break;
+		// Phase 4
 		case 4:
 			global.Monster[0] = instance_create_depth(320, 80, 0, obj_CharaMonster_Phase4);
 			global.BattleMusic = audio_play_sound(damagecontrol, 20, false);
 			break;
+		// Phase 5
 		case 5:
 			global.Monster[0] = instance_create_depth(320, 240, 1, obj_CharaMonster_A_Phase1);
 			bul = instance_create_depth(0, 0, -10000, obj_BulletGenerator);
 			bul.Turn = -68;
 			break;
+		// Phase 6
 		case 6:
 			global.Monster[0] = instance_create_depth(320, 240, 1, obj_CharaMonster_A_Phase2);
 			global.BattleMusic = audio_play_sound(Phase6, 20, false);
 			break;
+		// Phase 7 uses its own room and object, so it's not defined here
 	}
 }

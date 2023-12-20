@@ -1,9 +1,11 @@
+// Fade in
 if alarm[0] > 0 {
 	FadingStage = (1 / 60);
 	if image_alpha >= 1 {
 		FadingStage = 0;
 	}
 }
+// Fade out
 if alarm[1] > 0 {
 	FadingStage = (-1 / 60);
 	if (alarm[1] == 1) {
@@ -11,10 +13,15 @@ if alarm[1] > 0 {
 		alarm[0] = 61;
 	}
 }
+
+// Skip feature
 if keyboard_check_pressed(ord("Z")) || keyboard_check_pressed(vk_enter) {
 	Timer = 7339;
 }
+
+// Sets the blend to red, was experimenting with differents value so HSV was used here
 image_blend = make_color_hsv(0, 255, 255);
+
 Timer += 1;
 image_alpha += FadingStage;
 if (Timer == 240) {

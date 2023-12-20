@@ -1,3 +1,4 @@
+// Here, the base parameters of the battle are initialised
 global.BorderWidth = 570;
 global.BorderHeight = 120;
 

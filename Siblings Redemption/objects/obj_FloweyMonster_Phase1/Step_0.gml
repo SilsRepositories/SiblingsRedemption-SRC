@@ -25,26 +25,6 @@ if ShakeEffect > 0 {
 }
 Siner += 0.04;
 
-/*
-  Only use THIS when you want the enemy to DODGE attacks
-*/
-//if alarm[1] > 0 {
-//	DodgeAnim = 1;
-//}
-//else {
-//	x += 6;
-//	if (x >= 320) {
-//		x = 320;
-//		DodgeAnim = 0;
-//	}
-//}
-//if (DodgeAnim == 1) {
-//	x -= 6;
-//	if (x < 160) {
-//		x = 160;
-//	}
-//}
-
 if instance_exists(Dialogue) {
 	for (var i = 0; i < array_length(global.Monster); i++) {
 		if instance_exists(global.Monster[i]) {

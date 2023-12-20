@@ -57,6 +57,7 @@ if (MyHP <= 0) {
 		SetChaText("NO HEAL NORMAL MODE");
 	}
 	if global.FG_Hits == 0 && global.FG_Start == 1 {
+		UnlockAchievement(2);
 		UnlockAchievement(3);
 		SetChaText("NO HIT NORMAL MODE");
 	}
